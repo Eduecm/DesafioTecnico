@@ -2,7 +2,7 @@
 
 Public Class Associados
     Inherits System.Web.UI.Page
-    Dim connectionString As String = "Server=EDUARDO\SQLEXPRESS;Database=DesafioTecnico;User Id=sa;Password=123456;Trusted_Connection=True;"
+    Dim connectionString As String = ConfigurationManager.AppSettings("StringConnection")
     Dim listaAssociados = New List(Of AssociadoModel)
     Dim listaEmpresas = New List(Of EmpresaModel)
 
@@ -39,7 +39,21 @@ Public Class Associados
         If txtId.Text = "Novo" Then
             sql = "INSERT INTO Associados (Nome, Cpf, DataNascimento) VALUES (@nome, @cpf, @dataNascimento) "
         Else
-            sql = "UPDATE Associados SET Nome=@nome, Cpf=@cpf, DataNascimento=@dataNascimento WHERE Id=@id "
+            sql = "SELECT Nome FROM Associados WHERE Id = @idAssociado"
+            Using con As New SqlConnection(connectionString)
+                Using cmd As New SqlCommand(sql, con)
+                    cmd.Parameters.AddWithValue("@idAssociado", txtId.Text)
+                    con.Open()
+                    Using reader As SqlDataReader = cmd.ExecuteReader()
+                        If Not reader.Read() Then
+                            sql = "INSERT INTO Associados (Nome, Cpf, DataNascimento) VALUES (@nome, @cpf, @dataNascimento) "
+                            txtId.Text = "Novo"
+                        Else
+                            sql = "UPDATE Associados SET Nome=@nome, Cpf=@cpf, DataNascimento=@dataNascimento WHERE Id=@id "
+                        End If
+                    End Using
+                End Using
+            End Using
         End If
         Using con As New SqlConnection(connectionString)
             Using cmd As New SqlCommand(sql, con)
@@ -52,6 +66,10 @@ Public Class Associados
                 cmd.ExecuteNonQuery()
             End Using
         End Using
+
+        If txtId.Text = "Novo" Then
+            LimparCampos()
+        End If
 
         AtualizaGridAssociados()
 
@@ -83,19 +101,6 @@ Public Class Associados
         ScriptManager.RegisterStartupScript(Me, Me.GetType(), "NoDataAlert", "alert('Associado excluido com sucesso!');", True)
         LimparCampos()
         AtualizaGridAssociados()
-
-    End Sub
-
-    Protected Sub btnPesquisar_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnPesquisar.Click
-
-        Dim id As String = txtId.Text.Trim()
-
-        If Not IsNumeric(txtId.Text) Then
-            ScriptManager.RegisterStartupScript(Me, Me.GetType(), "NoDataAlert", "alert('Id inválido ou em branco!');", True)
-            Exit Sub
-        End If
-
-        PreencherRegistro(id)
 
     End Sub
 
@@ -164,6 +169,34 @@ Public Class Associados
             Dim selectedRow As GridViewRow = GridViewEmpresas.Rows(index)
             DeletarEmpresa(selectedRow.Cells(0).Text)
         End If
+    End Sub
+
+    Protected Sub btnPesquisarGrid_Click(sender As Object, e As EventArgs)
+
+        If String.IsNullOrEmpty(txtPesquisaGrid.Text) Then
+            AtualizaGridAssociados()
+            Exit Sub
+        End If
+
+        Dim pesquisa As String = txtPesquisaGrid.Text
+        Dim query As String = "SELECT * FROM Associados WHERE Nome LIKE @Pesquisa OR Cpf LIKE @Pesquisa OR id LIKE @Pesquisa OR CONVERT(VARCHAR, DataNascimento , 103) LIKE @PesquisaData "
+        Using connection As New SqlConnection(connectionString)
+            Using command As New SqlCommand(query, connection)
+                command.Parameters.AddWithValue("@Pesquisa", "%" & pesquisa & "%")
+                command.Parameters.AddWithValue("@PesquisaData", pesquisa & "%")
+                connection.Open()
+                Dim reader As SqlDataReader = command.ExecuteReader()
+                GridViewAssociados.DataSource = reader
+                GridViewAssociados.DataBind()
+            End Using
+        End Using
+    End Sub
+
+    Protected Sub btnLimparPesquisarGrid_Click(sender As Object, e As EventArgs)
+
+        txtPesquisaGrid.Text = ""
+        AtualizaGridAssociados()
+
     End Sub
 
     Private Sub DeletarEmpresa(ByVal idEmpresa As Integer)
@@ -238,6 +271,7 @@ Public Class Associados
         txtNome.Text = ""
         txtCpf.Text = ""
         txtDataNascimento.Text = ""
+        btnAdicionaEmpresa.Enabled = False
         GridViewEmpresas.DataSource = ""
         GridViewEmpresas.DataBind()
 
@@ -255,6 +289,7 @@ Public Class Associados
                         txtNome.Text = reader("Nome").ToString()
                         txtCpf.Text = FormatCpfCnpj(reader("Cpf").ToString())
                         txtDataNascimento.Text = Left(reader("DataNascimento").ToString(), 10)
+                        btnAdicionaEmpresa.Enabled = True
                         AtualizaGridEmpresas()
                     Else
                         LimparCampos()

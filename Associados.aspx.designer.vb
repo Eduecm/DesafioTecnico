@@ -23,15 +23,6 @@ Partial Public Class Associados
     Protected WithEvents txtId As Global.System.Web.UI.WebControls.TextBox
 
     '''<summary>
-    '''Controle btnPesquisar.
-    '''</summary>
-    '''<remarks>
-    '''Campo gerado automaticamente.
-    '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
-    '''</remarks>
-    Protected WithEvents btnPesquisar As Global.System.Web.UI.WebControls.Button
-
-    '''<summary>
     '''Controle txtNome.
     '''</summary>
     '''<remarks>
@@ -84,6 +75,33 @@ Partial Public Class Associados
     '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
     '''</remarks>
     Protected WithEvents GridViewEmpresas As Global.System.Web.UI.WebControls.GridView
+
+    '''<summary>
+    '''Controle txtPesquisaGrid.
+    '''</summary>
+    '''<remarks>
+    '''Campo gerado automaticamente.
+    '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
+    '''</remarks>
+    Protected WithEvents txtPesquisaGrid As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''Controle btnPesquisarGrid.
+    '''</summary>
+    '''<remarks>
+    '''Campo gerado automaticamente.
+    '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
+    '''</remarks>
+    Protected WithEvents btnPesquisarGrid As Global.System.Web.UI.WebControls.Button
+
+    '''<summary>
+    '''Controle btnLimparPesquisarGrid.
+    '''</summary>
+    '''<remarks>
+    '''Campo gerado automaticamente.
+    '''Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
+    '''</remarks>
+    Protected WithEvents btnLimparPesquisarGrid As Global.System.Web.UI.WebControls.Button
 
     '''<summary>
     '''Controle GridViewAssociados.

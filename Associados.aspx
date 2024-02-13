@@ -31,43 +31,42 @@
             <h1>Associados</h1>
             <div class="form-group">
                 <label for="txtId" class="label">Id:</label>
-                <div class="input-group">
-                    <asp:TextBox ID="txtId" runat="server" placeholder="Digite o Id para pesquisar" Text="Novo" CssClass="form-control" Style="margin-right: 10px;"></asp:TextBox>
-                    <div class="input-group-append">
-                        <asp:Button ID="btnPesquisar" runat="server" Text="Pesquisar" OnClick="btnPesquisar_Click" CssClass="btn btn-primary" />
-                    </div>
-                </div>
+                <asp:TextBox ID="txtId" runat="server" Text="Novo" CssClass="form-control" Enabled="false"></asp:TextBox>
             </div>
+            <table>
+                <tr>
+                    <td style="padding-right: 10px;">
+                        <label for="txtNome" class="label">Nome:</label>
+                        <asp:TextBox ID="txtNome" runat="server" CssClass="form-control" MaxLength="200"></asp:TextBox>
+                    </td>
+                    <td style="padding-right: 10px;">
+                        <label for="txtCpf" class="label">CPF:</label>
+                        <asp:TextBox ID="txtCpf" runat="server" CssClass="form-control" MaxLength="14" onkeypress="formatarCpf(this)"></asp:TextBox>
+                    </td>
+                    <td>
+                        <label for="txtDataNascimento" class="label">Data de Nascimento:</label>
+                        <asp:TextBox ID="txtDataNascimento" runat="server" placeholder="(dd/mm/aaaa)" CssClass="form-control" onkeypress="formatarData(this)"></asp:TextBox>
+                    </td>
+                </tr>
+            </table>
+            <br />
+
             <div class="form-group">
-                <label for="txtNome" class="label">Nome:</label>
-                <asp:TextBox ID="txtNome" runat="server" CssClass="form-control"></asp:TextBox>
-            </div>
-            <div class="form-group">
-                <label for="txtCpf" class="label">CPF:</label>
-                <asp:TextBox ID="txtCpf" runat="server" CssClass="form-control" onkeypress="formatarCpf(this)"></asp:TextBox>
-            </div>
-            <div class="form-group">
-                <label for="txtDataNascimento" class="label">Data de Nascimento:</label>
-                <asp:TextBox ID="txtDataNascimento" runat="server" placeholder="(dd/mm/aaaa)" CssClass="form-control" onkeypress="formatarData(this)"></asp:TextBox>
-            </div>
-            <div class="form-group">
-                <label for="txtIdEmpresa" class="label">Empresa:</label>
+                <label for="txtIdEmpresa" class="label">Relacionar Empresa:</label>
                 <div class="input-group">
                     <asp:TextBox ID="txtIdEmpresa" runat="server" placeholder="Digite o código da Empresa" CssClass="form-control" Style="margin-right: 10px;"></asp:TextBox>
                     <div class="input-group-append">
-                        <asp:Button ID="btnAdicionaEmpresa" runat="server" Text="Incluir" OnClick="btnAdicionarEmpresa_Click" CssClass="btn btn-primary" />
+                        <asp:Button ID="btnAdicionaEmpresa" runat="server" Text="Incluir" OnClick="btnAdicionarEmpresa_Click" CssClass="btn btn-primary" Enabled="false" />
                     </div>
                 </div>
             </div>
-            <br />
-
             <div class="form-group">
                 <label for="GridViewEmpresas" class="label">Empresas Relacionadas:</label>
                 <asp:GridView ID="GridViewEmpresas" runat="server" AutoGenerateColumns="False" DataKeyNames="Id">
                     <Columns>
                         <asp:BoundField DataField="Id" HeaderText="Id" ItemStyle-HorizontalAlign="Left" ItemStyle-Width="30" />
-                        <asp:BoundField DataField="Nome" HeaderText="Nome" ItemStyle-HorizontalAlign="Left" ItemStyle-Width="300"/>
-                        <asp:BoundField DataField="Cnpj" HeaderText="CPF" ItemStyle-HorizontalAlign="Left" ItemStyle-Width="150"/>
+                        <asp:BoundField DataField="Nome" HeaderText="Nome" ItemStyle-HorizontalAlign="Left" ItemStyle-Width="300" />
+                        <asp:BoundField DataField="Cnpj" HeaderText="CPF" ItemStyle-HorizontalAlign="Left" ItemStyle-Width="150" />
                         <asp:TemplateField HeaderText="Excluir">
                             <ItemTemplate>
                                 <asp:Button ID="btnExcluir" runat="server" Text="Excluir" CommandName="SelectRow" CommandArgument='<%# Container.DataItemIndex %>' />
@@ -79,13 +78,23 @@
             <br />
 
             <div class="form-group">
-                <label for="GridViewAssociados" class="label">Associados Cadastrados:</label>
+                <label for="txtPesquisaGrid" class="label">Pesquisar Associados Cadastrados:</label>
+                <div class="input-group">
+                    <asp:TextBox ID="txtPesquisaGrid" runat="server" CssClass="form-control" Style="margin-right: 10px;"></asp:TextBox>
+                    <div class="input-group-append">
+                        <asp:Button ID="btnPesquisarGrid" runat="server" Text="Pesquisar" OnClick="btnPesquisarGrid_Click" CssClass="btn btn-primary" />
+                        <asp:Button ID="btnLimparPesquisarGrid" runat="server" Text="Limpar" OnClick="btnLimparPesquisarGrid_Click" CssClass="btn btn-primary" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
                 <asp:GridView ID="GridViewAssociados" runat="server" AutoGenerateColumns="False" DataKeyNames="Id">
                     <Columns>
                         <asp:BoundField DataField="Id" HeaderText="Id" ItemStyle-HorizontalAlign="Left" ItemStyle-Width="30" />
-                        <asp:BoundField DataField="Nome" HeaderText="Nome" ItemStyle-HorizontalAlign="Left" ItemStyle-Width="300"  />
+                        <asp:BoundField DataField="Nome" HeaderText="Nome" ItemStyle-HorizontalAlign="Left" ItemStyle-Width="300" />
                         <asp:BoundField DataField="Cpf" HeaderText="CPF" ItemStyle-HorizontalAlign="Left" ItemStyle-Width="150" />
-                        <asp:BoundField DataField="DataNascimento" HeaderText="Data de Nascimento" DataFormatString="{0:dd/MM/yyyy}" ItemStyle-HorizontalAlign="Left" ItemStyle-Width="200"/>
+                        <asp:BoundField DataField="DataNascimento" HeaderText="Data de Nascimento" DataFormatString="{0:dd/MM/yyyy}" ItemStyle-HorizontalAlign="Left" ItemStyle-Width="200" />
                         <asp:TemplateField HeaderText="Selecionar">
                             <ItemTemplate>
                                 <asp:Button ID="btnSelecionar" runat="server" Text="Selecionar" CommandName="SelectRow" CommandArgument='<%# Container.DataItemIndex %>' ItemStyle-Width="150" />

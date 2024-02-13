@@ -46,15 +46,6 @@ Campo gerado automaticamente.
 Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
 </remarks>
 </member>
-<member name="F:DesafioTecnico.Associados._btnPesquisar">
-<summary>
-Controle btnPesquisar.
-</summary>
-<remarks>
-Campo gerado automaticamente.
-Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
-</remarks>
-</member>
 <member name="F:DesafioTecnico.Associados._txtNome">
 <summary>
 Controle txtNome.
@@ -109,6 +100,33 @@ Campo gerado automaticamente.
 Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
 </remarks>
 </member>
+<member name="F:DesafioTecnico.Associados._txtPesquisaGrid">
+<summary>
+Controle txtPesquisaGrid.
+</summary>
+<remarks>
+Campo gerado automaticamente.
+Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
+</remarks>
+</member>
+<member name="F:DesafioTecnico.Associados._btnPesquisarGrid">
+<summary>
+Controle btnPesquisarGrid.
+</summary>
+<remarks>
+Campo gerado automaticamente.
+Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
+</remarks>
+</member>
+<member name="F:DesafioTecnico.Associados._btnLimparPesquisarGrid">
+<summary>
+Controle btnLimparPesquisarGrid.
+</summary>
+<remarks>
+Campo gerado automaticamente.
+Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
+</remarks>
+</member>
 <member name="F:DesafioTecnico.Associados._GridViewAssociados">
 <summary>
 Controle GridViewAssociados.
@@ -154,15 +172,6 @@ Campo gerado automaticamente.
 Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
 </remarks>
 </member>
-<member name="F:DesafioTecnico.Empresas._btnPesquisar">
-<summary>
-Controle btnPesquisar.
-</summary>
-<remarks>
-Campo gerado automaticamente.
-Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
-</remarks>
-</member>
 <member name="F:DesafioTecnico.Empresas._txtNome">
 <summary>
 Controle txtNome.
@@ -202,6 +211,33 @@ Para modificar, mova a declaração de campo do arquivo de designer a um arquivo
 <member name="F:DesafioTecnico.Empresas._GridViewAssociados">
 <summary>
 Controle GridViewAssociados.
+</summary>
+<remarks>
+Campo gerado automaticamente.
+Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
+</remarks>
+</member>
+<member name="F:DesafioTecnico.Empresas._txtPesquisaGrid">
+<summary>
+Controle txtPesquisaGrid.
+</summary>
+<remarks>
+Campo gerado automaticamente.
+Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
+</remarks>
+</member>
+<member name="F:DesafioTecnico.Empresas._btnPesquisarGrid">
+<summary>
+Controle btnPesquisarGrid.
+</summary>
+<remarks>
+Campo gerado automaticamente.
+Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
+</remarks>
+</member>
+<member name="F:DesafioTecnico.Empresas._btnLimparPesquisarGrid">
+<summary>
+Controle btnLimparPesquisarGrid.
 </summary>
 <remarks>
 Campo gerado automaticamente.
