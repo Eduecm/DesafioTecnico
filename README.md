@@ -1,0 +1,49 @@
+Estrutura do Banco de Dados:
+USE [DesafioTecnico]
+GO
+/****** Object:  Table [dbo].[Associados]    Script Date: 13/02/2024 15:58:48 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Associados](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[Nome] [varchar](200) NOT NULL,
+	[CPF] [varchar](11) NOT NULL,
+	[DataNascimento] [datetime] NULL,
+ CONSTRAINT [PK_Associados] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Empresas]    Script Date: 13/02/2024 15:58:48 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Empresas](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[Nome] [varchar](200) NOT NULL,
+	[CNPJ] [varchar](14) NOT NULL,
+ CONSTRAINT [PK_Empresas] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Relacionamento]    Script Date: 13/02/2024 15:58:48 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Relacionamento](
+	[idAssociado] [int] NOT NULL,
+	[idEmpresa] [int] NOT NULL,
+ CONSTRAINT [PK_Relacionamento2] PRIMARY KEY CLUSTERED 
+(
+	[idAssociado] ASC,
+	[idEmpresa] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
