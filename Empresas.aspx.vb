@@ -39,21 +39,7 @@ Public Class Empresas
         If txtId.Text = "Novo" Then
             sql = "INSERT INTO Empresas (Nome, Cnpj) VALUES (@nome, @cnpj) "
         Else
-            sql = "SELECT Nome FROM Empresas WHERE Id = @idEmpresa"
-            Using con As New SqlConnection(connectionString)
-                Using cmd As New SqlCommand(sql, con)
-                    cmd.Parameters.AddWithValue("@idEmpresa", txtId.Text)
-                    con.Open()
-                    Using reader As SqlDataReader = cmd.ExecuteReader()
-                        If Not reader.Read() Then
-                            sql = "INSERT INTO Empresas (Nome, Cnpj) VALUES (@nome, @cnpj) "
-                            txtId.Text = "Novo"
-                        Else
-                            sql = "UPDATE Empresas SET Nome=@nome, Cnpj=@cnpj WHERE Id=@id "
-                        End If
-                    End Using
-                End Using
-            End Using
+            sql = "UPDATE Empresas SET Nome=@nome, Cnpj=@cnpj WHERE Id=@id "
         End If
         Using con As New SqlConnection(connectionString)
             Using cmd As New SqlCommand(sql, con)

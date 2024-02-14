@@ -39,21 +39,7 @@ Public Class Associados
         If txtId.Text = "Novo" Then
             sql = "INSERT INTO Associados (Nome, Cpf, DataNascimento) VALUES (@nome, @cpf, @dataNascimento) "
         Else
-            sql = "SELECT Nome FROM Associados WHERE Id = @idAssociado"
-            Using con As New SqlConnection(connectionString)
-                Using cmd As New SqlCommand(sql, con)
-                    cmd.Parameters.AddWithValue("@idAssociado", txtId.Text)
-                    con.Open()
-                    Using reader As SqlDataReader = cmd.ExecuteReader()
-                        If Not reader.Read() Then
-                            sql = "INSERT INTO Associados (Nome, Cpf, DataNascimento) VALUES (@nome, @cpf, @dataNascimento) "
-                            txtId.Text = "Novo"
-                        Else
-                            sql = "UPDATE Associados SET Nome=@nome, Cpf=@cpf, DataNascimento=@dataNascimento WHERE Id=@id "
-                        End If
-                    End Using
-                End Using
-            End Using
+            sql = "UPDATE Associados SET Nome=@nome, Cpf=@cpf, DataNascimento=@dataNascimento WHERE Id=@id "
         End If
         Using con As New SqlConnection(connectionString)
             Using cmd As New SqlCommand(sql, con)
